@@ -6,6 +6,7 @@ import { collatedTasksExist } from "../helpers";
 
 export const useTasks = (selectedProject) => {
   const [tasks, setTasks] = useState([]);
+  const [archivedTasks, setArchivedTasks] = useState([]);
 
   useEffect(() => {
     let unsubscribe = firebase
@@ -41,9 +42,36 @@ export const useTasks = (selectedProject) => {
             )
           : newTasks.filter((task) => task.archived !== true)
       );
+
+      setArchivedTasks(newTasks.filter((task) => task.archived !== false));
     });
-    return () => {
-      cleanup;
-    };
-  }, [input]);
+    return () => unsubscribe();
+  }, [selectedProject]);
+
+  return { tasks, archivedTasks };
+};
+
+export const useProjects = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("projects")
+      .where("projectId", "==", "56e5375dc8a3e2d7010b")
+      .orderBy("projectId")
+      .get()
+      .then((snapshot) => {
+        const allProjects = snapshot.docs.map((project) => ({
+          ...project.data(),
+          docId: project.id,
+        }));
+
+        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+          setProjects(allProjects);
+        }
+      });
+  }, [projects]);
+
+  return { projects, setProjects };
 };
