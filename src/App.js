@@ -1,9 +1,10 @@
 import React from "react";
+import { Header } from "./components/layouts/Header";
+import { Content } from "./components/layouts/Content";
 
 export const App = () => (
   <div className="App">
-    <header className="App-header">
-      <p>Hello there</p>
-    </header>
+    <Header />
+    <Content />
   </div>
 );
