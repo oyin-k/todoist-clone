@@ -20,41 +20,68 @@ export const Sidebar = () => {
         <li
           className={active === "inbox" ? "active" : undefined}
           data-testid="inbox"
-          onClick={() => {
-            setActive("inbox");
-            setSelectedProject("INBOX");
-          }}
         >
-          <span>
-            <FaInbox />
-          </span>
-          <span>Inbox</span>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              setActive("inbox");
+              setSelectedProject("INBOX");
+            }}
+            onKeyDown={() => {
+              setActive("inbox");
+              setSelectedProject("INBOX");
+            }}
+          >
+            <span>
+              <FaInbox />
+            </span>
+            <span>Inbox</span>
+          </div>
         </li>
         <li
           className={active === "today" ? "active" : undefined}
           data-testid="today"
-          onClick={() => {
-            setActive("today");
-            setSelectedProject("TODAY");
-          }}
         >
-          <span>
-            <FaRegCalendar />
-          </span>
-          <span>Today</span>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              setActive("today");
+              setSelectedProject("TODAY");
+            }}
+            onKeyDown={() => {
+              setActive("today");
+              setSelectedProject("TODAY");
+            }}
+          >
+            <span>
+              <FaRegCalendar />
+            </span>
+            <span>Today</span>
+          </div>
         </li>
         <li
           className={active === "next_7" ? "active" : undefined}
           data-testid="next_7"
-          onClick={() => {
-            setActive("next_7");
-            setSelectedProject("NEXT_7");
-          }}
         >
-          <span>
-            <FaRegCalendarAlt />
-          </span>
-          <span>Next 7 Days</span>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+            onKeyDown={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+          >
+            <span>
+              <FaRegCalendarAlt />
+            </span>
+            <span>Next 7 Days</span>
+          </div>
         </li>
       </ul>
       <div
